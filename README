@@ -1,0 +1,3 @@
+Hi, this is my first open-source-ish project! It's a fork of thest1's lazylist. What does it do?
+
+Well, let's say you want to display a ListView of images that are downloaded asynchrouslly. Well, just extend LazyAdapter and give it some URL's and it's takes care of the mess. But my improvememnt replaced the backend (an array of Strings) with a vector of Objects of your choosing! Even better, now you can add objects any time, not just at the LazyAdapter constructor. And you can use your extended LazyAdapter on ListViews, GridViews and Galleries! Awww yeah!

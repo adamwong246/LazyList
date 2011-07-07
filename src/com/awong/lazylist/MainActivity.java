@@ -10,11 +10,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Gallery;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.ViewFlipper;
 
 public class MainActivity extends Activity {
     
     ListView list;
+    GridView grid;
+    Gallery gallery;
+    ViewFlipper flipper;
+    
     LazyAdapter adapter;
 
     @Override
@@ -22,12 +29,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        list=(ListView)findViewById(R.id.list);
         adapter=new ExtendedLazyAdapter(this);
-        list.setAdapter(adapter);
         
-        Button b=(Button)findViewById(R.id.button1);
-        b.setOnClickListener(listener);
+        list = (ListView) findViewById(R.id.list);
+        grid = (GridView) findViewById(R.id.grid);
+        gallery = (Gallery) findViewById(R.id.gallery);
+        
+        flipper = (ViewFlipper) findViewById(R.id.flipper);
+        
+        list.setAdapter(adapter);
+        grid.setAdapter(adapter);
+        gallery.setAdapter(adapter);
+        
+       findViewById(R.id.clearCache).setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View arg0) {
+                adapter.imageLoader.clearCache();
+                adapter.notifyDataSetChanged();
+            }
+        });
         
         for (String s : mStrings){
         	adapter.add(s, this);
@@ -41,14 +61,6 @@ public class MainActivity extends Activity {
         list.setAdapter(null);
         super.onDestroy();
     }
-    
-    public OnClickListener listener=new OnClickListener(){
-        @Override
-        public void onClick(View arg0) {
-            adapter.imageLoader.clearCache();
-            adapter.notifyDataSetChanged();
-        }
-    };
     
     private String[] mStrings={
             "http://a3.twimg.com/profile_images/670625317/aam-logo-v3-twitter.png",

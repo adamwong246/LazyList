@@ -20,7 +20,11 @@
 		android:flipInterval="10000"
 		
 		>
-		
+				<Gallery android:id="@+id/gallery" 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:spacing="5dp"/>
+			
 		<ListView android:id="@+id/list" 
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"/>
@@ -35,9 +39,7 @@
 			android:stretchMode="columnWidth"
 			android:gravity="center" />
 		
-		<Gallery android:id="@+id/gallery" 
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content" />
+
 			
 	</ViewFlipper>
 	

@@ -50,7 +50,8 @@ public class MainActivity extends Activity {
         });
         
         for (String s : mStrings){
-        	adapter.add(s, this);
+        	DummyObject d = new DummyObject(s, "derp");
+        	adapter.add(d, this);
         }
     }
     

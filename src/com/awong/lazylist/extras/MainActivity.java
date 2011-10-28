@@ -1,15 +1,18 @@
-package com.awong.lazylist;
+package com.awong.lazylist.extras;
 
 //import com.awong.lazylist.*;
 
 //import com.awong.lazylist.R;
 //import com.awong.R;
 
+import com.awong.lazylist.LazyAdapter;
+import com.awong.lazylist.R;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -22,6 +25,7 @@ public class MainActivity extends Activity {
     Gallery gallery;
     ViewFlipper flipper;
     
+    //ExampleImageLoadingLazyAdapter adapter;
     LazyAdapter adapter;
 
     @Override
@@ -29,7 +33,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        adapter=new ExtendedLazyAdapter(this);
+        //adapter=new ExampleImageLoadingLazyAdapter(this, R.drawable.stub);
+        adapter=new ExampleLazyAdapter(this);
         
         list = (ListView) findViewById(R.id.list);
         grid = (GridView) findViewById(R.id.grid);
@@ -44,7 +49,7 @@ public class MainActivity extends Activity {
        findViewById(R.id.clearCache).setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View arg0) {
-                adapter.imageLoader.clearCache();
+                //adapter.imageLoader.clearCache();
                 adapter.notifyDataSetChanged();
             }
         });
@@ -52,13 +57,16 @@ public class MainActivity extends Activity {
         for (String s : mStrings){
         	DummyObject d = new DummyObject(s, "derp");
         	adapter.add(d, this);
+        	//plainAdapter.add(d, this);
+        	
+        	Log.d("print", d.url);
         }
     }
     
     @Override
     public void onDestroy()
     {
-        adapter.imageLoader.stopThread();
+        //adapter.imageLoader.stopThread();
         list.setAdapter(null);
         super.onDestroy();
     }

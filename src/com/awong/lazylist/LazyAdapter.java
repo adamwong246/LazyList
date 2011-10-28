@@ -12,16 +12,16 @@ import android.widget.BaseAdapter;
 public abstract class LazyAdapter extends BaseAdapter {
     
     protected Activity activity;
-    protected Vector data;
+    protected Vector<Object> data;
     protected static LayoutInflater inflater=null;
-    public ImageLoader imageLoader; 
+   
     
     public LazyAdapter(Activity a) {
         activity = a;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        imageLoader=new ImageLoader(activity.getApplicationContext());
         
-        data = new Vector(0);
+        
+        data = new Vector<Object>(0);
     }
 
     public int getCount() {
@@ -36,8 +36,6 @@ public abstract class LazyAdapter extends BaseAdapter {
         return position;
     }
     
-    public abstract View getView(int position, View convertView, ViewGroup parent); 
-
 	public void add(final Object o, Activity a) {
 		
 		a.runOnUiThread(new Runnable() {
@@ -49,4 +47,26 @@ public abstract class LazyAdapter extends BaseAdapter {
 		
 		
 	}
+    public abstract View getView(int position, View convertView, ViewGroup parent);
+//    {
+//    	Object d = (Object) data.get(position);
+//        
+//        View vi=convertView;
+//        if(convertView==null){
+//        	vi = inflater.inflate(R.layout.plain_item, null);
+//        }
+//        else{
+//        	Log.d("print", "it was null");
+//        }
+//
+//        TextView text=(TextView)vi.findViewById(R.id.text);;
+//  
+//
+//        
+//        //text.setText(position + ", " + d.dummy);
+//
+//        return vi;
+//    }
+
+
 }

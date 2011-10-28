@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.WeakHashMap;
 
+
 //import com.awong.lazylist.R;
 
 
@@ -28,13 +29,14 @@ public class ImageLoader {
     MemoryCache memoryCache=new MemoryCache();
     FileCache fileCache;
     private Map<ImageView, String> imageViews=Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
-    final int stub_id=R.drawable.stub;
+    final int stub_id;
     
-    public ImageLoader(Context context){
+    public ImageLoader(Context context, int stub){
         //Make the background thead low priority. This way it will not affect the UI performance
         photoLoaderThread.setPriority(Thread.NORM_PRIORITY-1);
         
         fileCache=new FileCache(context);
+        stub_id = stub;
     }
     
 

@@ -1,4 +1,4 @@
-package com.awong.lazylist;
+package com.awong.lazylist.extras;
 
 public class DummyObject {
 	public String url;

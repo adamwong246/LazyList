@@ -47,26 +47,18 @@ public abstract class LazyAdapter extends BaseAdapter {
 		
 		
 	}
+	
+	public void clear(Activity a){
+		a.runOnUiThread(new Runnable() {
+		    public void run() {
+		    	data.clear();
+		    	notifyDataSetChanged();
+		    }
+		});
+		
+	}
     public abstract View getView(int position, View convertView, ViewGroup parent);
-//    {
-//    	Object d = (Object) data.get(position);
-//        
-//        View vi=convertView;
-//        if(convertView==null){
-//        	vi = inflater.inflate(R.layout.plain_item, null);
-//        }
-//        else{
-//        	Log.d("print", "it was null");
-//        }
-//
-//        TextView text=(TextView)vi.findViewById(R.id.text);;
-//  
-//
-//        
-//        //text.setText(position + ", " + d.dummy);
-//
-//        return vi;
-//    }
+
 
 
 }

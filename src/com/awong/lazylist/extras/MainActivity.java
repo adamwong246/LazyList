@@ -33,8 +33,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        //adapter=new ExampleImageLoadingLazyAdapter(this, R.drawable.stub);
-        adapter=new ExampleLazyAdapter(this);
+        adapter=new ExampleImageLoadingLazyAdapter(this, R.drawable.stub);
+        //adapter=new ExampleLazyAdapter(this);
         
         list = (ListView) findViewById(R.id.list);
         grid = (GridView) findViewById(R.id.grid);
